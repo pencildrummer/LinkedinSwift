@@ -9,6 +9,7 @@
 #ifndef LSHeader_h
 #define LSHeader_h
 
+#import <linkedin-sdk/LISDK.h>
 #import "LinkedinSwiftHelper.h"
 #import "LinkedinSwiftConfiguration.h"
 
