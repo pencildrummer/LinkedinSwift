@@ -9,8 +9,8 @@
 #import "LinkedinSwiftHelper.h"
 
 #import "LinkedinSwiftConfiguration.h"
-#import <IOSLinkedInAPI/LIALinkedInApplication.h>
-#import <IOSLinkedInAPI/LIALinkedInHttpClient.h>
+#import <IOSLinkedInAPIFix/LIALinkedInApplication.h>
+#import <IOSLinkedInAPIFix/LIALinkedInHttpClient.h>
 #import <linkedin-sdk/LISDK.h>
 
 @import UIKit;
@@ -132,6 +132,14 @@
                 }];
             } else {
                 
+#ifdef isSessionManager
+                [httpClient GET:url parameters:@{@"oauth2_access_token": lsAccessToken.accessToken} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    successCallback([[LSResponse alloc] initWithDictionary:responseObject statusCode:200]);
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    errorCallback(error);
+                }];
+#else
+                
                 [httpClient GET:url parameters:@{@"oauth2_access_token": lsAccessToken.accessToken} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                     
                     successCallback([[LSResponse alloc] initWithDictionary:responseObject statusCode:200]);
@@ -139,6 +147,7 @@
                     
                     errorCallback(error);
                 }];
+#endif
             }
         }
     }
