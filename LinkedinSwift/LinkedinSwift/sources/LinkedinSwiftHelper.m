@@ -11,6 +11,7 @@
 #import "LinkedinSwiftConfiguration.h"
 #import <IOSLinkedInAPIFix/LIALinkedInApplication.h>
 #import <IOSLinkedInAPIFix/LIALinkedInHttpClient.h>
+#import <linkedin-sdk/LISDK.h>
 
 @import UIKit;
 
