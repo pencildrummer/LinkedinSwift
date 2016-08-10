@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   s.source_files        = 'LinkedinSwift/LinkedinSwift/sources/*.*'
   s.preserve_paths      = 'linkedin-sdk.framework'
   s.vendored_frameworks = 'linkedin-sdk.framework'
-  s.requires_arc = true
+  s.public_header_files = 'linkedin-sdk.framework/Headers/*.h'
+  s.requires_arc        = true
 
   s.dependency 'AFNetworking', '>= 2.6.3'
   s.dependency 'IOSLinkedInAPIFix', '>= 2.0.2'
